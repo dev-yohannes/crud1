@@ -5,11 +5,20 @@ $email = "";
 $phone = "";
 $address = "";
 
+$errorMessage = "";
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
+
+    do {
+        if (empty($name) || empty($email) || empty($phone) || empty($address)) {
+            $errorMessage = "All fields are required";
+            break;
+        }
+    } while (false);
 }
 
 ?>

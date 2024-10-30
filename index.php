@@ -29,6 +29,7 @@
                 <?php
 
                 include "connection.php";
+                $conn->select_db("crud1");
 
                 $sql = "SELECT * FROM clients";
                 $result = $conn->query($sql);

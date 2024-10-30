@@ -37,20 +37,25 @@
                     die("Invalid query: " . $conn->error);
                 }
 
+                while ($row = $result->fetch_assoc()) {
+                    echo "
+                    <tr>
+                        <td>$row[id]</td>
+                        <td>$row[name]</td>
+                        <td>$row[email]</td>
+                        <td>$row[phone]</td>
+                        <td>$row[address]</td>
+                        <td>$row[created_at]</td>
+                        <td>
+                            <a class='btn btn-primary btn-sm' href='edit.php?id=$row[id]'>Edit</a>
+                            <a class='btn btn-danger btn-sm' href='delete.php?id=$row[id]'>Delete</a>
+                        </td>
+                    </tr>
+                    ";
+                }
+
                 ?>
 
-                <tr>
-                    <td>10</td>
-                    <td>Bill Gates</td>
-                    <td>bill.gates@microsoft.com</td>
-                    <td>+22323342423</td>
-                    <td>New York, USA</td>
-                    <td>18/05/22</td>
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="edit.php">Edit</a>
-                        <a class="btn btn-danger btn-sm" href="delete.php">Delete</a>
-                    </td>
-                </tr>
             </tbody>
         </table>
     </div>

@@ -6,6 +6,7 @@ $phone = "";
 $address = "";
 
 $errorMessage = "";
+$successMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
@@ -18,6 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errorMessage = "All fields are required";
             break;
         }
+
+        $name = "";
+        $email = "";
+        $phone = "";
+        $address = "";
+
+        $successMessage = "Client added correctly.";
     } while (false);
 }
 

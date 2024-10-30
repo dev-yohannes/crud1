@@ -25,6 +25,20 @@
                 </tr>
             </thead>
             <tbody>
+
+                <?php
+
+                include "connection.php";
+
+                $sql = "SELECT * FROM clients";
+                $result = $conn->query($sql);
+
+                if (!$result) {
+                    die("Invalid query: " . $conn->error);
+                }
+
+                ?>
+
                 <tr>
                     <td>10</td>
                     <td>Bill Gates</td>

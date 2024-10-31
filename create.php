@@ -44,40 +44,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="container my-5">
         <h2>New Client</h2>
-        <form method="post">
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Name</label>
-                <div class="col-sm-6">
-                    <input type="text" name="name" value="<?php echo $name ?>" class="form-control">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Email</label>
-                <div class="col-sm-6">
-                    <input type="text" name="email" value="<?php echo $email ?>" class="form-control">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Phone</label>
-                <div class="col-sm-6">
-                    <input type="text" name="phone" value="<?php echo $phone ?>" class="form-control">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Address</label>
-                <div class="col-sm-6">
-                    <input type="text" name="address" value="<?php echo $address ?>" class="form-control">
-                </div>
-            </div>
 
-            <div class="row mb-3">
-                <div class="offset-sm-3 col-sm-3 d-grid">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-                <div class="col-sm-3 d-grid">
-                    <a href="index.php" class="btn btn-outline-primary" role="button">Cancel</a>
-                </div>
+        <?php
+        if (!empty($errorMessage)) {
+            echo "
+            <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                <strong>$errorMessage</strong>
+                <button type='submit' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>
+            ";
+        }
+        ?>
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-6">
+                <input type="text" name="name" value="<?php echo $name ?>" class="form-control">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-6">
+                <input type="text" name="email" value="<?php echo $email ?>" class="form-control">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Phone</label>
+            <div class="col-sm-6">
+                <input type="text" name="phone" value="<?php echo $phone ?>" class="form-control">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Address</label>
+            <div class="col-sm-6">
+                <input type="text" name="address" value="<?php echo $address ?>" class="form-control">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="offset-sm-3 col-sm-3 d-grid">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="col-sm-3 d-grid">
+                <a href="index.php" class="btn btn-outline-primary" role="button">Cancel</a>
+            </div>
+        </div>
 
         </form>
     </div>

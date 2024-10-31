@@ -37,6 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $address = "";
 
         $successMessage = "Client added correctly.";
+
+        header("location: index.php");
+        exit;
     } while (false);
 }
 

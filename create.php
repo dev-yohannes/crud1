@@ -1,5 +1,8 @@
 <?php
 
+include "connection.php";
+$conn->select_db("crud1");
+
 $name = "";
 $email = "";
 $phone = "";
@@ -17,6 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     do {
         if (empty($name) || empty($email) || empty($phone) || empty($address)) {
             $errorMessage = "All fields are required";
+            break;
+        }
+
+        $sql = "INSERT INTO clients (name, email, phone, address) VALUES ('$name', '$email', '$phone', '$address')";
+        $result = $conn->query($sql);
+
+        if (!$result) {
+            $errorMessage = "Invalid query: " . $conn->error;
             break;
         }
 

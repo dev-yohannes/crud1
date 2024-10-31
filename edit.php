@@ -1,5 +1,8 @@
 <?php
 
+include "connection.php";
+$conn->select_db("crud1");
+
 $name = "";
 $email = "";
 $phone = "";
@@ -7,6 +10,54 @@ $address = "";
 
 $errorMessage = "";
 $successMessage = "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (!isset($_GET['id'])) {
+        header("location: index.php");
+        exit;
+    }
+
+    $id = $_GET["id"];
+
+    $sql = "SELECT * FROM clients WHERE id=$id";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+
+    if (!$row) {
+        header("location: index.php");
+        exit;
+    }
+
+    $name = $row['name'];
+    $email = $row['email'];
+    $phone = $row['phone'];
+    $address = $row['address'];
+} else {
+
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+
+    do {
+        if (empty($id) || empty($email) || empty($phone) || empty($address)) {
+            $errorMessage = "All the fields are required.";
+            break;
+        }
+
+        $sql = "UPDATE clients SET name = '$name', email = '$email', phone = '$phone', address = '$address' WHERE id = $id";
+        $result = $conn->query($sql);
+
+        if (!$result) {
+            $errorMessage = "Invalid query: " . $conn->error;
+            break;
+        }
+
+        $successMessage = "Client updated successfully.";
+        header("location: index.php");
+    } while (false);
+}
 
 ?>
 
@@ -37,7 +88,7 @@ $successMessage = "";
         ?>
 
         <form method="post">
-            <input type="hidden" value="<?php echo $id ?>">
+            <input type="hidden" name="id" value="<?php echo $id ?>">
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-6">
